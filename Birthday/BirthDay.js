@@ -23,6 +23,7 @@ const today = [30, 4, 2024];
 for (let i = 0; i < birthDay.length; i++) {
   const age = today[2] - birthDay[i][2];
 
+  //Switch ile ayları string'e çevirme
   switch (birthDay[i][1]) {
     case 1:
       month = "Ocak";
@@ -76,15 +77,16 @@ for (let i = 0; i < birthDay.length; i++) {
       console.log("invalid month");
       break;
   }
-  if (today[1] === birthDay[i][1] && today[0] >= birthDay[i][0]) {
-    const list = document.createElement("li");
-    list.textContent = `${birthDay[i][0]} ${month} ${birthDay[i][2]} doğumlu kişi ${age} yaşında.`;
-    document.getElementById("age-list").appendChild(list);
-  } else if (today[1] > birthDay[i][1]) {
+  //Ay ve Gün olarak tam yaşını doldurdu mu kontrol ediyor
+  if (
+    today[1] > birthDay[i][1] ||
+    (today[1] === birthDay[i][1] && today[0] >= birthDay[i][0])
+  ) {
     const list = document.createElement("li");
     list.textContent = `${birthDay[i][0]} ${month} ${birthDay[i][2]} doğumlu kişi ${age} yaşında.`;
     document.getElementById("age-list").appendChild(list);
   } else {
+    //Doldurmadıysa yaşını 1 azaltıp yazdırıyor
     const list = document.createElement("li");
     list.textContent = `${birthDay[i][0]} ${month} ${
       birthDay[i][2]
@@ -92,11 +94,13 @@ for (let i = 0; i < birthDay.length; i++) {
     document.getElementById("age-list").appendChild(list);
   }
 }
+//Submit buttonun varsayılan davranışını engelliyor
 document
   .getElementById("submit-button")
   .addEventListener("click", (event) => event.preventDefault());
 
 const createAgeList = () => {
+  //İnputa girilen verileri bir array şeklinde birthDay dizisine pushluyor
   birthDay.push([
     parseInt(document.getElementsByClassName("birthday-input")[0].value),
     parseInt(document.getElementsByClassName("birthday-input")[1].value),
@@ -105,6 +109,7 @@ const createAgeList = () => {
 
   const newAge = today[2] - birthDay[birthDay.length - 1][2];
   let newMonth;
+  //Switch ile ayları string'e çevirme
   switch (birthDay[birthDay.length - 1][1]) {
     case 1:
       newMonth = "Ocak";
@@ -158,12 +163,14 @@ const createAgeList = () => {
       console.log("invalid month");
       break;
   }
+  //İnputlardan biri boş mu kontrol ediyor boşsa hata veriyor
   if (
     document.getElementsByClassName("birthday-input")[0].value === "" ||
     document.getElementsByClassName("birthday-input")[1].value === "" ||
     document.getElementsByClassName("birthday-input")[2].value === ""
   ) {
     alert("Please fill the blanks");
+    //İnputlara girilen verileri Ay ve Gün olarak tam yaşını doldurdu mu kontrol ediyor
   } else if (
     today[1] >
       parseInt(document.getElementsByClassName("birthday-input")[1].value) ||
@@ -177,6 +184,7 @@ const createAgeList = () => {
       birthDay[birthDay.length - 1][2]
     } doğumlu kişi ${newAge} yaşında.`;
     document.getElementById("age-list").appendChild(list);
+    //Doldurmadıysa yaşından 1 azaltıp ekrana yazıyor
   } else if (
     today[1] >
     parseInt(document.getElementsByClassName("birthday-input")[1].value)
@@ -189,6 +197,7 @@ const createAgeList = () => {
     document.getElementById("age-list").appendChild(list);
   }
 };
+//Submit buttonunu dinliyor, Click olursa createAgeList fonksiyonu çalışıyor
 document
   .getElementById("submit-button")
   .addEventListener("click", createAgeList);
