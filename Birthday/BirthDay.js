@@ -12,6 +12,14 @@
 // 8 Nisan 1992 doğumlu kişi 32 yaşında.
 // 30 Nisan 1978 doğumlu kişi 46 yaşında...
 
+// const pushBirthDay = () => {
+//   birthDay.push(document.getElementsByClassName("birthday-input").value);
+// };
+
+// document
+//   .getElementById("submit-button")
+//   .addEventListener("click", pushBirthDay);
+
 const birthDay = [
   [11, 11, 1985],
   [25, 11, 1999],
@@ -76,14 +84,22 @@ for (let i = 0; i < birthDay.length; i++) {
       console.log("invalid month");
       break;
   }
-}
-
-const createAgeList = () => {
   const list = document.createElement("li");
   list.textContent = `${birthDay[i][0]} ${month} ${birthDay[i][2]} doğumlu kişi ${age} yaşında.`;
   document.getElementById("age-list").appendChild(list);
-};
+}
+document
+  .getElementById("submit-button")
+  .addEventListener("click", (event) => event.preventDefault());
 
+const createAgeList = () => {
+  birthDay.push([
+    parseInt(document.getElementsByClassName("birthday-input")[0].value),
+    parseInt(document.getElementsByClassName("birthday-input")[1].value),
+    parseInt(document.getElementsByClassName("birthday-input")[2].value),
+  ]);
+  console.log(birthDay);
+};
 document
   .getElementById("submit-button")
   .addEventListener("click", createAgeList);
