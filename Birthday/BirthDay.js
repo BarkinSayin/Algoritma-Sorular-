@@ -165,10 +165,12 @@ const createAgeList = () => {
   ) {
     alert("Please fill the blanks");
   } else if (
-    today[1] ===
+    today[1] >
+      parseInt(document.getElementsByClassName("birthday-input")[1].value) ||
+    (today[1] ===
       parseInt(document.getElementsByClassName("birthday-input")[1].value) &&
-    today[0] >=
-      parseInt(document.getElementsByClassName("birthday-input")[0].value)
+      today[0] >=
+        parseInt(document.getElementsByClassName("birthday-input")[0].value))
   ) {
     const list = document.createElement("li");
     list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
@@ -179,11 +181,6 @@ const createAgeList = () => {
     today[1] >
     parseInt(document.getElementsByClassName("birthday-input")[1].value)
   ) {
-    const list = document.createElement("li");
-    list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
-      birthDay[birthDay.length - 1][2]
-    } doğumlu kişi ${newAge} yaşında.`;
-    document.getElementById("age-list").appendChild(list);
   } else {
     const list = document.createElement("li");
     list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
