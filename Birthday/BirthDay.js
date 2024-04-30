@@ -76,9 +76,21 @@ for (let i = 0; i < birthDay.length; i++) {
       console.log("invalid month");
       break;
   }
-  const list = document.createElement("li");
-  list.textContent = `${birthDay[i][0]} ${month} ${birthDay[i][2]} doğumlu kişi ${age} yaşında.`;
-  document.getElementById("age-list").appendChild(list);
+  if (today[1] === birthDay[i][1] && today[0] >= birthDay[i][0]) {
+    const list = document.createElement("li");
+    list.textContent = `${birthDay[i][0]} ${month} ${birthDay[i][2]} doğumlu kişi ${age} yaşında.`;
+    document.getElementById("age-list").appendChild(list);
+  } else if (today[1] > birthDay[i][1]) {
+    const list = document.createElement("li");
+    list.textContent = `${birthDay[i][0]} ${month} ${birthDay[i][2]} doğumlu kişi ${age} yaşında.`;
+    document.getElementById("age-list").appendChild(list);
+  } else {
+    const list = document.createElement("li");
+    list.textContent = `${birthDay[i][0]} ${month} ${
+      birthDay[i][2]
+    } doğumlu kişi ${age - 1} yaşında.`;
+    document.getElementById("age-list").appendChild(list);
+  }
 }
 document
   .getElementById("submit-button")
@@ -90,6 +102,7 @@ const createAgeList = () => {
     parseInt(document.getElementsByClassName("birthday-input")[1].value),
     parseInt(document.getElementsByClassName("birthday-input")[2].value),
   ]);
+
   const newAge = today[2] - birthDay[birthDay.length - 1][2];
   let newMonth;
   switch (birthDay[birthDay.length - 1][1]) {
@@ -145,11 +158,39 @@ const createAgeList = () => {
       console.log("invalid month");
       break;
   }
-  const list = document.createElement("li");
-  list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
-    birthDay[birthDay.length - 1][2]
-  } doğumlu kişi ${newAge} yaşında.`;
-  document.getElementById("age-list").appendChild(list);
+  if (
+    document.getElementsByClassName("birthday-input")[0].value === "" ||
+    document.getElementsByClassName("birthday-input")[1].value === "" ||
+    document.getElementsByClassName("birthday-input")[2].value === ""
+  ) {
+    alert("Please fill the blanks");
+  } else if (
+    today[1] ===
+      parseInt(document.getElementsByClassName("birthday-input")[1].value) &&
+    today[0] >=
+      parseInt(document.getElementsByClassName("birthday-input")[0].value)
+  ) {
+    const list = document.createElement("li");
+    list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
+      birthDay[birthDay.length - 1][2]
+    } doğumlu kişi ${newAge} yaşında.`;
+    document.getElementById("age-list").appendChild(list);
+  } else if (
+    today[1] >
+    parseInt(document.getElementsByClassName("birthday-input")[1].value)
+  ) {
+    const list = document.createElement("li");
+    list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
+      birthDay[birthDay.length - 1][2]
+    } doğumlu kişi ${newAge} yaşında.`;
+    document.getElementById("age-list").appendChild(list);
+  } else {
+    const list = document.createElement("li");
+    list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
+      birthDay[birthDay.length - 1][2]
+    } doğumlu kişi ${newAge - 1} yaşında.`;
+    document.getElementById("age-list").appendChild(list);
+  }
 };
 document
   .getElementById("submit-button")
