@@ -12,14 +12,6 @@
 // 8 Nisan 1992 doğumlu kişi 32 yaşında.
 // 30 Nisan 1978 doğumlu kişi 46 yaşında...
 
-// const pushBirthDay = () => {
-//   birthDay.push(document.getElementsByClassName("birthday-input").value);
-// };
-
-// document
-//   .getElementById("submit-button")
-//   .addEventListener("click", pushBirthDay);
-
 const birthDay = [
   [11, 11, 1985],
   [25, 11, 1999],
@@ -98,7 +90,66 @@ const createAgeList = () => {
     parseInt(document.getElementsByClassName("birthday-input")[1].value),
     parseInt(document.getElementsByClassName("birthday-input")[2].value),
   ]);
-  console.log(birthDay);
+  const newAge = today[2] - birthDay[birthDay.length - 1][2];
+  let newMonth;
+  switch (birthDay[birthDay.length - 1][1]) {
+    case 1:
+      newMonth = "Ocak";
+      break;
+
+    case 2:
+      newMonth = "Şubat";
+      break;
+
+    case 3:
+      newMonth = "Mart";
+      break;
+
+    case 4:
+      newMonth = "Nisan";
+      break;
+
+    case 5:
+      newMonth = "Mayıs";
+      break;
+
+    case 6:
+      newMonth = "Haziran";
+      break;
+
+    case 7:
+      newMonth = "Temmuz";
+      break;
+
+    case 8:
+      newMonth = "Ağustos";
+      break;
+
+    case 9:
+      newMonth = "Eylül";
+      break;
+
+    case 10:
+      newMonth = "Ekim";
+      break;
+
+    case 11:
+      newMonth = "Kasım";
+      break;
+
+    case 12:
+      newMonth = "Aralık";
+      break;
+
+    default:
+      console.log("invalid month");
+      break;
+  }
+  const list = document.createElement("li");
+  list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
+    birthDay[birthDay.length - 1][2]
+  } doğumlu kişi ${newAge} yaşında.`;
+  document.getElementById("age-list").appendChild(list);
 };
 document
   .getElementById("submit-button")
