@@ -48,6 +48,7 @@ input::-webkit-outer-spin-button {
   margin-top: 15px;
   font-size: 30px;
   color: black;
+  cursor: pointer;
 }
 .button0 {
   display: flex;
