@@ -185,10 +185,6 @@ const createAgeList = () => {
     } doğumlu kişi ${newAge} yaşında.`;
     document.getElementById("age-list").appendChild(list);
     //Doldurmadıysa yaşından 1 azaltıp ekrana yazıyor
-  } else if (
-    today[1] >
-    parseInt(document.getElementsByClassName("birthday-input")[1].value)
-  ) {
   } else {
     const list = document.createElement("li");
     list.textContent = `${birthDay[birthDay.length - 1][0]} ${newMonth} ${
