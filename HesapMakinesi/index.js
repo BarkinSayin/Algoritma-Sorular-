@@ -1,7 +1,7 @@
 const input = document.getElementById("input");
 const buttons = document.getElementsByClassName("buttons");
 
-let num1 = "";
+let numbers = [];
 let operator = "";
 
 [...buttons].map((button) => {
@@ -18,54 +18,61 @@ let operator = "";
       button.innerText === "8" ||
       button.innerText === "9"
     ) {
-      input.value += parseInt(button.innerText);
+      input.value += parseFloat(button.innerText);
     } else if (button.innerText === "+") {
       if (input.value !== "") {
-        num1 = parseInt(input.value);
+        numbers.push(parseFloat(input.value));
         operator = "+";
         input.value = "";
       }
     } else if (button.innerText === "-") {
       if (input.value !== "") {
-        num1 = parseInt(input.value);
+        numbers.push(parseFloat(input.value));
         operator = "-";
         input.value = "";
       }
     } else if (button.innerText === "x") {
       if (input.value !== "") {
-        num1 = parseInt(input.value);
+        numbers.push(parseFloat(input.value));
         operator = "*";
         input.value = "";
       }
     } else if (button.innerText === "/") {
       if (input.value !== "") {
-        num1 = parseInt(input.value);
+        numbers.push(parseFloat(input.value));
         operator = "/";
         input.value = "";
       }
     } else if (button.innerText === "=") {
       if (input.value !== "") {
-        const num2 = parseInt(input.value);
+        numbers.push(parseFloat(input.value));
         let result;
         switch (operator) {
           case "+":
-            result = num1 + num2;
+            result = 0;
+            numbers.forEach((num) => (result = result + parseFloat(num)));
             break;
           case "-":
-            result = num1 - num2;
+            result = numbers[0];
+            numbers.shift();
+            numbers.forEach((num) => (result = result - parseFloat(num)));
             break;
           case "*":
-            result = num1 * num2;
+            result = 1;
+            numbers.forEach((num) => (result = result * parseFloat(num)));
             break;
           case "/":
-            result = num1 / num2;
+            result = numbers[0];
+            numbers.shift();
+            numbers.forEach((num) => (result = result / parseFloat(num)));
             break;
           default:
             result = "Error";
         }
         input.value = result;
-        num1 = "";
+        numbers = [];
         operator = "";
+        console.log(result);
       }
     }
   });
