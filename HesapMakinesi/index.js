@@ -19,8 +19,11 @@ let operator = "";
       button.innerText === "9"
     ) {
       input.value += parseFloat(button.innerText);
-    } else if (button.innerText === ".") {
-      input.value += button.innerText;
+    } else if (button.innerText === "+/-") {
+      if (input.value !== "") {
+        const currentValue = parseFloat(input.value);
+        input.value = -currentValue;
+      }
     } else if (button.innerText === "+") {
       if (input.value !== "") {
         numbers.push(parseFloat(input.value));
