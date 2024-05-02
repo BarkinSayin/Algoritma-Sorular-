@@ -19,6 +19,8 @@ let operator = "";
       button.innerText === "9"
     ) {
       input.value += parseFloat(button.innerText);
+    } else if (button.innerText === ".") {
+      input.value += button.innerText;
     } else if (button.innerText === "+") {
       if (input.value !== "") {
         numbers.push(parseFloat(input.value));
@@ -74,6 +76,10 @@ let operator = "";
         operator = "";
         console.log(result);
       }
+    } else if (button.innerText === "AC") {
+      numbers = [];
+      input.value = "";
+      operator = "";
     }
   });
 });
