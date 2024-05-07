@@ -7,18 +7,7 @@ let decimalClicked = false;
 
 [...buttons].map((button) => {
   button.addEventListener("click", () => {
-    if (
-      button.innerText === "0" ||
-      button.innerText === "1" ||
-      button.innerText === "2" ||
-      button.innerText === "3" ||
-      button.innerText === "4" ||
-      button.innerText === "5" ||
-      button.innerText === "6" ||
-      button.innerText === "7" ||
-      button.innerText === "8" ||
-      button.innerText === "9"
-    ) {
+    if (isButtonTextDigit(button)) {
       input.value += parseFloat(button.innerText);
     } else if (input.value === "") {
       return;
@@ -75,4 +64,10 @@ const getOperator = (value) => {
   numbers.push(parseFloat(input.value));
   operator = value;
   input.value = "";
+};
+
+const isButtonTextDigit = (button) => {
+  return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(
+    button.innerText
+  );
 };
