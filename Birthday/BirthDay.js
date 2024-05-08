@@ -172,6 +172,15 @@ const createAgeList = () => {
     alert("Please fill the blanks");
     //İnputlara girilen verileri Ay ve Gün olarak tam yaşını doldurdu mu kontrol ediyor
   } else if (
+    parseInt(document.getElementsByClassName("birthday-input")[1].value) > 12
+  ) {
+    alert("Invalid Month");
+  } else if (
+    parseInt(document.getElementsByClassName("birthday-input")[2].value) >=
+    today[2]
+  ) {
+    alert("Invalid Year");
+  } else if (
     today[1] >
       parseInt(document.getElementsByClassName("birthday-input")[1].value) ||
     (today[1] ===
