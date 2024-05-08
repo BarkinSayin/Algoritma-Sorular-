@@ -20,63 +20,42 @@ const birthDay = [
 ];
 const today = [30, 4, 2024];
 
+const getMonthName = (monthNumber) => {
+  switch (monthNumber) {
+    case 1:
+      return "Ocak";
+    case 2:
+      return "Şubat";
+    case 3:
+      return "Mart";
+    case 4:
+      return "Nisan";
+    case 5:
+      return "Mayıs";
+    case 6:
+      return "Haziran";
+    case 7:
+      return "Temmuz";
+    case 8:
+      return "Ağustos";
+    case 9:
+      return "Eylül";
+    case 10:
+      return "Ekim";
+    case 11:
+      return "Kasım";
+    case 12:
+      return "Aralık";
+    default:
+      return "Invalid month";
+  }
+};
+
 for (let i = 0; i < birthDay.length; i++) {
   const age = today[2] - birthDay[i][2];
 
   //Switch ile ayları string'e çevirme
-  switch (birthDay[i][1]) {
-    case 1:
-      month = "Ocak";
-      break;
-
-    case 2:
-      month = "Şubat";
-      break;
-
-    case 3:
-      month = "Mart";
-      break;
-
-    case 4:
-      month = "Nisan";
-      break;
-
-    case 5:
-      month = "Mayıs";
-      break;
-
-    case 6:
-      month = "Haziran";
-      break;
-
-    case 7:
-      month = "Temmuz";
-      break;
-
-    case 8:
-      month = "Ağustos";
-      break;
-
-    case 9:
-      month = "Eylül";
-      break;
-
-    case 10:
-      month = "Ekim";
-      break;
-
-    case 11:
-      month = "Kasım";
-      break;
-
-    case 12:
-      month = "Aralık";
-      break;
-
-    default:
-      console.log("invalid month");
-      break;
-  }
+  const month = getMonthName(birthDay[i][1]);
   //Ay ve Gün olarak tam yaşını doldurdu mu kontrol ediyor
   if (
     today[1] > birthDay[i][1] ||
@@ -108,61 +87,12 @@ const createAgeList = () => {
   ]);
 
   const newAge = today[2] - birthDay[birthDay.length - 1][2];
-  let newMonth;
+
   //Switch ile ayları string'e çevirme
-  switch (birthDay[birthDay.length - 1][1]) {
-    case 1:
-      newMonth = "Ocak";
-      break;
-
-    case 2:
-      newMonth = "Şubat";
-      break;
-
-    case 3:
-      newMonth = "Mart";
-      break;
-
-    case 4:
-      newMonth = "Nisan";
-      break;
-
-    case 5:
-      newMonth = "Mayıs";
-      break;
-
-    case 6:
-      newMonth = "Haziran";
-      break;
-
-    case 7:
-      newMonth = "Temmuz";
-      break;
-
-    case 8:
-      newMonth = "Ağustos";
-      break;
-
-    case 9:
-      newMonth = "Eylül";
-      break;
-
-    case 10:
-      newMonth = "Ekim";
-      break;
-
-    case 11:
-      newMonth = "Kasım";
-      break;
-
-    case 12:
-      newMonth = "Aralık";
-      break;
-
-    default:
-      console.log("invalid month");
-      break;
-  }
+  const birthMonth = parseInt(
+    document.getElementsByClassName("birthday-input")[1].value
+  );
+  const newMonth = getMonthName(birthMonth);
   //İnputlardan biri boş mu kontrol ediyor boşsa hata veriyor
   if (
     document.getElementsByClassName("birthday-input")[0].value === "" ||
@@ -202,6 +132,7 @@ const createAgeList = () => {
     document.getElementById("age-list").appendChild(list);
   }
 };
+
 //Submit buttonunu dinliyor, Click olursa createAgeList fonksiyonu çalışıyor
 document
   .getElementById("submit-button")
